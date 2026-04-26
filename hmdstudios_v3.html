@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HMD Studios – Turning Moments Into Masterpieces</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #F0D080;
+    --gold-dark: #8B6914;
+    --black: #0A0A0A;
+    --dark: #111111;
+    --dark2: #1A1A1A;
+    --dark3: #242424;
+    --white: #F5F0E8;
+    --grey: #888;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
+
+  /* ── GOLD GRADIENT TEXT ── */
+  .gold-text {
+    background: linear-gradient(135deg, #C9A84C 0%, #F0D080 45%, #C9A84C 70%, #8B6914 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ══════════════════════════════
+     NAVIGATION
+  ══════════════════════════════ */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(201,168,76,0.25);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 60px;
+    height: 72px;
+    transition: all .3s;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: .78rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    position: relative;
+    transition: color .3s;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width .3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+    color: var(--black) !important;
+    padding: 10px 24px !important;
+    border-radius: 2px;
+    font-weight: 700 !important;
+  }
+  .nav-cta::after { display: none !important; }
+
+  /* ══════════════════════════════
+     HERO
+  ══════════════════════════════ */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 60px 80px;
+  }
+
+  /* animated golden orbs */
+  .hero::before {
+    content: '';
+    position: absolute; top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(201,168,76,.18) 0%, transparent 70%);
+    animation: orbFloat 8s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -150px; left: -150px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(201,168,76,.12) 0%, transparent 70%);
+    animation: orbFloat 10s ease-in-out infinite alternate-reverse;
+    pointer-events: none;
+  }
+  @keyframes orbFloat {
+    from { transform: translate(0,0) scale(1); }
+    to { transform: translate(40px,-40px) scale(1.08); }
+  }
+
+  /* film strip decoration */
+  .film-strip {
+    position: absolute; top: 0; left: 0; height: 100%; width: 60px;
+    display: flex; flex-direction: column; gap: 0;
+    opacity: .12; pointer-events: none;
+  }
+  .film-hole {
+    width: 30px; height: 22px; margin: 8px auto;
+    border: 2px solid var(--gold);
+    border-radius: 3px;
+  }
+
+  .hero-inner {
+    position: relative; z-index: 2;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    max-width: 1400px; margin: 0 auto; width: 100%;
+  }
+
+  .hero-tag {
+    font-size: .7rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,.4);
+    display: inline-block;
+    padding: 6px 16px;
+    margin-bottom: 24px;
+    animation: fadeUp .8s ease both;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    animation: fadeUp .8s .15s ease both;
+  }
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--gold-light);
+    margin: 20px 0 36px;
+    animation: fadeUp .8s .3s ease both;
+  }
+  .hero-desc {
+    font-size: .9rem;
+    line-height: 1.8;
+    color: #aaa;
+    max-width: 440px;
+    margin-bottom: 40px;
+    animation: fadeUp .8s .45s ease both;
+  }
+  .hero-btns {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    animation: fadeUp .8s .6s ease both;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+    color: var(--black);
+    padding: 16px 36px;
+    border: none; cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 10px;
+    transition: transform .3s, box-shadow .3s;
+    box-shadow: 0 8px 30px rgba(201,168,76,.3);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(201,168,76,.45); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--gold);
+    padding: 15px 35px;
+    border: 1px solid var(--gold);
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 10px;
+    transition: all .3s;
+  }
+  .btn-outline:hover { background: rgba(201,168,76,.08); }
+
+  /* hero right — model showcase */
+  .hero-visual {
+    position: relative;
+    animation: fadeUp .8s .3s ease both;
+  }
+  .hero-main-img {
+    width: 100%;
+    max-width: 480px;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+    border: 1px solid rgba(201,168,76,.3);
+    box-shadow: 0 0 60px rgba(201,168,76,.15);
+  }
+  .hero-img-placeholder {
+    width: 100%;
+    max-width: 480px;
+    aspect-ratio: 3/4;
+    margin-left: auto;
+    border: 1px solid rgba(201,168,76,.3);
+    box-shadow: 0 0 60px rgba(201,168,76,.15);
+    background: linear-gradient(160deg, #1a1a1a 0%, #242424 60%, #1a1200 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-img-placeholder::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(201,168,76,.07) 100%);
+  }
+  .img-placeholder-icon { font-size: 4rem; opacity: .4; }
+  .img-placeholder-text { font-size: .75rem; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; opacity: .6; }
+
+  .hero-stat-bar {
+    position: absolute; bottom: -20px; left: -30px;
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,.25);
+    padding: 16px 24px;
+    display: flex; gap: 30px;
+    box-shadow: 0 20px 40px rgba(0,0,0,.5);
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+  .stat-label { font-size: .65rem; letter-spacing: 2px; color: var(--grey); text-transform: uppercase; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ══════════════════════════════
+     DIVIDER
+  ══════════════════════════════ */
+  .gold-divider {
+    display: flex; align-items: center; gap: 16px;
+    max-width: 200px; margin: 0 auto;
+  }
+  .gold-divider-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+  .gold-divider-dot { width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); }
+
+  /* ══════════════════════════════
+     SERVICES
+  ══════════════════════════════ */
+  .section { padding: 100px 60px; max-width: 1400px; margin: 0 auto; }
+  .section-full { padding: 100px 0; }
+
+  .section-tag {
+    text-align: center;
+    font-size: .7rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    text-align: center;
+    font-size: .9rem;
+    color: var(--grey);
+    max-width: 500px;
+    margin: 0 auto 70px;
+    line-height: 1.8;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(201,168,76,.15);
+    border: 1px solid rgba(201,168,76,.15);
+  }
+  .service-card {
+    background: var(--dark);
+    padding: 0 0 36px 0;
+    transition: background .3s, transform .3s;
+    position: relative; overflow: hidden;
+    cursor: default;
+  }
+  .service-img-wrap {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+  .service-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .6s ease;
+    filter: brightness(.75) saturate(.8);
+  }
+  .service-img-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, var(--dark) 100%);
+    pointer-events: none;
+  }
+  .service-card:hover .service-img { transform: scale(1.07); filter: brightness(.9) saturate(1); }
+  .service-card .service-icon { margin: 0 32px 16px; }
+  .service-card .service-title { margin: 0 32px 10px; }
+  .service-card .service-desc { margin: 0 32px; }
+  .service-card::before {
+    content: '';
+    position: absolute; bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+    transition: width .4s;
+  }
+  .service-card:hover::before { width: 100%; }
+  .service-card:hover { background: var(--dark2); }
+
+  .service-icon {
+    width: 52px; height: 52px;
+    border: 1px solid rgba(201,168,76,.4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 24px;
+    transition: border-color .3s, background .3s;
+  }
+  .service-card:hover .service-icon { border-color: var(--gold); background: rgba(201,168,76,.08); }
+
+  .service-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+  }
+  .service-desc { font-size: .82rem; color: var(--grey); line-height: 1.8; }
+
+  /* ══════════════════════════════
+     PORTFOLIO GRID
+  ══════════════════════════════ */
+  .portfolio-section {
+    background: var(--dark);
+    padding: 100px 60px;
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 3px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .portfolio-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 3/4;
+    background: var(--dark2);
+  }
+  .portfolio-item.wide { grid-column: span 2; aspect-ratio: 16/9; }
+  .portfolio-item.tall { grid-row: span 2; aspect-ratio: 3/5; }
+
+  .portfolio-img-bg {
+    width: 100%; height: 100%;
+    background: linear-gradient(160deg, #1c1c1c, #2a2200);
+    transition: transform .6s ease;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem; opacity: .3;
+  }
+  .portfolio-item:hover .portfolio-img-bg { transform: scale(1.05); }
+
+  .portfolio-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,.85) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity .4s;
+    display: flex; align-items: flex-end;
+    padding: 28px;
+  }
+  .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+  .portfolio-label {
+    font-size: .75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+  }
+
+  /* ══════════════════════════════
+     WHY US / PROCESS
+  ══════════════════════════════ */
+  .why-section {
+    padding: 100px 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .why-left .section-title { text-align: left; }
+  .why-left .section-sub { text-align: left; margin: 0 0 40px; }
+
+  .process-steps { display: flex; flex-direction: column; gap: 28px; }
+  .process-step {
+    display: flex; gap: 20px; align-items: flex-start;
+    padding: 24px;
+    border: 1px solid rgba(201,168,76,.12);
+    background: var(--dark);
+    transition: border-color .3s;
+  }
+  .process-step:hover { border-color: rgba(201,168,76,.4); }
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1;
+    min-width: 48px;
+  }
+  .step-content h4 {
+    font-size: .85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    color: var(--white);
+  }
+  .step-content p { font-size: .82rem; color: var(--grey); line-height: 1.7; }
+
+  .why-right {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .why-card {
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,.12);
+    padding: 32px 24px;
+    text-align: center;
+    transition: border-color .3s, background .3s;
+  }
+  .why-card:hover { border-color: rgba(201,168,76,.4); background: var(--dark3); }
+  .why-icon { font-size: 2rem; margin-bottom: 12px; }
+  .why-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+  .why-card p { font-size: .78rem; color: var(--grey); line-height: 1.6; }
+
+  /* ══════════════════════════════
+     TESTIMONIALS
+  ══════════════════════════════ */
+  .testimonials-section {
+    background: var(--dark);
+    padding: 100px 60px;
+  }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .testimonial-card {
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,.12);
+    padding: 36px;
+    position: relative;
+    transition: border-color .3s;
+  }
+  .testimonial-card:hover { border-color: rgba(201,168,76,.35); }
+  .quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    line-height: .7;
+    color: var(--gold);
+    opacity: .25;
+    margin-bottom: 8px;
+  }
+  .testimonial-text { font-size: .88rem; color: #bbb; line-height: 1.9; margin-bottom: 24px; font-style: italic; }
+  .testimonial-author { display: flex; align-items: center; gap: 14px; }
+  .author-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: .9rem; color: var(--black);
+  }
+  .author-name { font-size: .85rem; font-weight: 600; }
+  .author-role { font-size: .72rem; color: var(--gold); letter-spacing: 1px; }
+
+  /* ══════════════════════════════
+     PACKAGES
+  ══════════════════════════════ */
+  .packages-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .package-card {
+    border: 1px solid rgba(201,168,76,.2);
+    background: var(--dark);
+    padding: 40px 32px;
+    position: relative;
+    transition: transform .3s, border-color .3s;
+  }
+  .package-card.featured {
+    border-color: var(--gold);
+    background: linear-gradient(160deg, #1a1500, #111);
+    transform: scale(1.04);
+  }
+  .package-card:not(.featured):hover { transform: translateY(-6px); border-color: rgba(201,168,76,.5); }
+  .featured-badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    color: var(--black);
+    font-size: .65rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 18px;
+  }
+  .pkg-name { font-size: .7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .pkg-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    margin-bottom: 4px;
+  }
+  .pkg-sub { font-size: .78rem; color: var(--grey); margin-bottom: 28px; }
+  .pkg-features { list-style: none; margin-bottom: 36px; }
+  .pkg-features li {
+    font-size: .82rem;
+    color: #bbb;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .pkg-features li::before { content: '✦'; color: var(--gold); font-size: .6rem; }
+
+  /* ══════════════════════════════
+     CTA BANNER
+  ══════════════════════════════ */
+  .cta-banner {
+    background: linear-gradient(135deg, #0d0900 0%, #1a1200 50%, #0d0900 100%);
+    border-top: 1px solid rgba(201,168,76,.3);
+    border-bottom: 1px solid rgba(201,168,76,.3);
+    padding: 80px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-banner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(201,168,76,.08) 0%, transparent 70%);
+  }
+  .cta-banner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    margin-bottom: 16px;
+    position: relative; z-index: 1;
+  }
+  .cta-banner p { color: var(--grey); font-size: .9rem; margin-bottom: 36px; position: relative; z-index: 1; }
+  .cta-banner-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+
+  /* CTA social platform buttons */
+  .cta-social-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 22px;
+    border-radius: 4px;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: #fff;
+    transition: transform .25s, box-shadow .25s;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .cta-social-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,.5); }
+  .cta-fb { background: #1877F2; }
+  .cta-tt { background: #010101; border: 1px solid #333; }
+  .cta-yt { background: #FF0000; }
+  .cta-ig { background: linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); }
+
+  /* ══════════════════════════════
+     FOOTER
+  ══════════════════════════════ */
+  footer {
+    background: var(--black);
+    border-top: 1px solid rgba(201,168,76,.15);
+    padding: 60px 60px 30px;
+  }
+  .footer-inner {
+    max-width: 1400px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px; margin-bottom: 48px;
+  }
+  .footer-brand .nav-logo { display: block; margin-bottom: 16px; }
+  .footer-brand p { font-size: .82rem; color: var(--grey); line-height: 1.8; max-width: 280px; }
+  .footer-socials { display: flex; gap: 12px; margin-top: 24px; }
+  .social-btn {
+    width: 42px; height: 42px;
+    border: 1px solid rgba(201,168,76,.3);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    transition: all .3s; cursor: pointer;
+    text-decoration: none; color: var(--white);
+  }
+  .social-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,.4); }
+  .social-fb:hover { background: #1877F2; border-color: #1877F2; color: #fff; }
+  .social-tt:hover { background: #010101; border-color: #69C9D0; color: #fff; }
+  .social-yt:hover { background: #FF0000; border-color: #FF0000; color: #fff; }
+  .social-ig:hover { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); border-color: #cc2366; color: #fff; }
+
+  .footer-col h5 {
+    font-size: .7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 10px; }
+  .footer-col a {
+    font-size: .82rem;
+    color: var(--grey);
+    text-decoration: none;
+    transition: color .3s;
+  }
+  .footer-col a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    max-width: 1400px; margin: 0 auto;
+    border-top: 1px solid rgba(201,168,76,.1);
+    padding-top: 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: .75rem; color: var(--grey);
+  }
+
+  /* ══════════════════════════════
+     WHATSAPP BUTTON
+  ══════════════════════════════ */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 32px; right: 32px;
+    z-index: 9999;
+    display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+  }
+  .wa-tooltip {
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,.3);
+    color: var(--white);
+    font-size: .78rem;
+    padding: 8px 14px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: all .3s;
+    pointer-events: none;
+  }
+  .whatsapp-float:hover .wa-tooltip { opacity: 1; transform: translateX(0); }
+  .wa-btn {
+    width: 60px; height: 60px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 8px 30px rgba(37,211,102,.4);
+    transition: transform .3s, box-shadow .3s;
+    animation: waPulse 2.5s ease-in-out infinite;
+  }
+  .wa-btn:hover { transform: scale(1.12); box-shadow: 0 14px 40px rgba(37,211,102,.55); animation: none; }
+  .wa-btn svg { width: 32px; height: 32px; fill: #fff; }
+  @keyframes waPulse {
+    0%, 100% { box-shadow: 0 8px 30px rgba(37,211,102,.4); }
+    50% { box-shadow: 0 8px 50px rgba(37,211,102,.65); }
+  }
+
+  /* ══════════════════════════════
+     SCROLLED NAV
+  ══════════════════════════════ */
+  nav.scrolled {
+    background: rgba(10,10,10,.98);
+    box-shadow: 0 4px 30px rgba(0,0,0,.5);
+  }
+
+  /* ══════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════ */
+  @media (max-width: 1024px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 60px; }
+    .hero-img-placeholder { max-width: 100%; margin: 0 auto; }
+    .hero-stat-bar { position: static; margin-top: 20px; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .why-section { grid-template-columns: 1fr; gap: 60px; }
+    .testimonials-grid { grid-template-columns: 1fr 1fr; }
+    .packages-grid { grid-template-columns: 1fr; }
+    .package-card.featured { transform: none; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hero, .section, .portfolio-section, .testimonials-section, .cta-banner, footer { padding-left: 24px; padding-right: 24px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .portfolio-grid { grid-template-columns: 1fr 1fr; }
+    .portfolio-item.wide { grid-column: span 2; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .why-right { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    #how-to-use { padding: 60px 24px; }
+    #how-to-use .section-title { font-size: 1.8rem; }
+    #how-to-use > div > div:nth-child(3) { grid-template-columns: 1fr !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav id="mainNav">
+  <div class="nav-logo gold-text">HMD Studios</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a data-social="wa" href="https://wa.me/923144002597" target="_blank" class="nav-cta">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="film-strip" aria-hidden="true">
+    <div class="film-hole"></div><div class="film-hole"></div><div class="film-hole"></div>
+    <div class="film-hole"></div><div class="film-hole"></div><div class="film-hole"></div>
+    <div class="film-hole"></div><div class="film-hole"></div><div class="film-hole"></div>
+    <div class="film-hole"></div><div class="film-hole"></div><div class="film-hole"></div>
+    <div class="film-hole"></div><div class="film-hole"></div><div class="film-hole"></div>
+    <div class="film-hole"></div><div class="film-hole"></div><div class="film-hole"></div>
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag">✦ &nbsp; hmdstudios.online &nbsp; ✦</div>
+      <h1 class="hero-title">
+        <span class="gold-text">Turning</span><br>
+        Moments Into<br>
+        <span class="gold-text">Masterpieces</span>
+      </h1>
+      <p class="hero-sub">Stories. Visions. Impact.</p>
+      <p class="hero-desc">
+        Your modeling career starts here. HMD Studios crafts breathtaking portfolios for aspiring models — 
+        professional shoots, cinematic edits, and a brand that gets you noticed.
+      </p>
+      <div class="hero-btns">
+        <a data-social="wa" href="https://wa.me/923144002597?text=Hi%20HMD%20Studios!%20I%20want%20to%20book%20a%20portfolio%20shoot." target="_blank" class="btn-primary">
+          📸 &nbsp; Book Your Shoot
+        </a>
+        <a href="#portfolio" class="btn-outline">
+          View Portfolio ↓
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div style="position:relative; max-width:480px; margin-left:auto;">
+        <img data-imgid="hero-main" data-label="Hero Main Photo" src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&q=80&fit=crop" 
+             alt="Model Portfolio" 
+             style="width:100%; aspect-ratio:3/4; object-fit:cover; display:block; border:1px solid rgba(201,168,76,.35); box-shadow:0 0 60px rgba(201,168,76,.18);" 
+             loading="eager" />
+        <!-- gold corner accents -->
+        <div style="position:absolute;top:-6px;left:-6px;width:28px;height:28px;border-top:2px solid var(--gold);border-left:2px solid var(--gold);"></div>
+        <div style="position:absolute;top:-6px;right:-6px;width:28px;height:28px;border-top:2px solid var(--gold);border-right:2px solid var(--gold);"></div>
+        <div style="position:absolute;bottom:-6px;left:-6px;width:28px;height:28px;border-bottom:2px solid var(--gold);border-left:2px solid var(--gold);"></div>
+        <div style="position:absolute;bottom:-6px;right:-6px;width:28px;height:28px;border-bottom:2px solid var(--gold);border-right:2px solid var(--gold);"></div>
+      </div>
+      <div class="hero-stat-bar">
+        <div class="stat">
+          <div class="stat-num gold-text">500+</div>
+          <div class="stat-label">Portfolios Done</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num gold-text">5★</div>
+          <div class="stat-label">Client Rating</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num gold-text">3yr</div>
+          <div class="stat-label">Experience</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section id="services" style="background: var(--dark); padding: 100px 0;">
+  <div class="section">
+    <p class="section-tag">✦ What We Do ✦</p>
+    <h2 class="section-title">Our <span class="gold-text">Services</span></h2>
+    <p class="section-sub">Everything a new model needs to build a career that turns heads.</p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-img-wrap">
+          <img data-imgid="svc-create" data-label="Service: Create" src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=600&q=80&fit=crop" alt="Creative Direction" loading="lazy" class="service-img" />
+          <div class="service-img-overlay"></div>
+        </div>
+        <div class="service-icon">🎬</div>
+        <div class="service-title">CREATE</div>
+        <p class="service-desc">We bring your vision to life — conceptualizing looks, themes, and stories that reflect your unique personality and style.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-img-wrap">
+          <img data-imgid="svc-capture" data-label="Service: Capture" src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&q=80&fit=crop" alt="Photography Session" loading="lazy" class="service-img" />
+          <div class="service-img-overlay"></div>
+        </div>
+        <div class="service-icon">📷</div>
+        <div class="service-title">CAPTURE</div>
+        <p class="service-desc">Professional photography sessions with cinematic lighting, premium lenses, and expert direction for every shot.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-img-wrap">
+          <img data-imgid="svc-edit" data-label="Service: Edit" src="https://images.unsplash.com/photo-1574717024453-354056aafa98?w=600&q=80&fit=crop" alt="Photo Editing" loading="lazy" class="service-img" />
+          <div class="service-img-overlay"></div>
+        </div>
+        <div class="service-icon">✏️</div>
+        <div class="service-title">EDIT</div>
+        <p class="service-desc">Precision retouching and color grading that elevates your images to an industry-ready, editorial standard.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-img-wrap">
+          <img data-imgid="hero-main" data-label="Hero Main Photo" data-imgid="svc-inspire" data-label="Service: Inspire" src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600&q=80&fit=crop&crop=top" alt="Model Coaching" loading="lazy" class="service-img" />
+          <div class="service-img-overlay"></div>
+        </div>
+        <div class="service-icon">▶️</div>
+        <div class="service-title">INSPIRE</div>
+        <p class="service-desc">We guide and mentor aspiring models every step of the way — posing, confidence building, and portfolio strategy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PORTFOLIO ── -->
+<section id="portfolio" class="portfolio-section">
+  <p class="section-tag" style="text-align:center; margin-bottom:12px;">✦ Our Work ✦</p>
+  <h2 class="section-title" style="margin-bottom: 60px;">Portfolio <span class="gold-text">Showcase</span></h2>
+
+  <div class="portfolio-grid" style="max-width: 1400px; margin: 0 auto;">
+    <div class="portfolio-item tall">
+      <img data-imgid="port-1" data-label="Portfolio 1 – Editorial Fashion" src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=700&q=80&fit=crop" alt="Editorial Fashion" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+      <div class="portfolio-overlay"><span class="portfolio-label">Editorial Fashion</span></div>
+    </div>
+    <div class="portfolio-item">
+      <img data-imgid="port-2" data-label="Portfolio 2 – Dark Luxury" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=700&q=80&fit=crop" alt="Dark Luxury" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+      <div class="portfolio-overlay"><span class="portfolio-label">Dark Luxury</span></div>
+    </div>
+    <div class="portfolio-item">
+      <img data-imgid="port-3" data-label="Portfolio 3 – Golden Hour" src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=700&q=80&fit=crop" alt="Golden Hour" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+      <div class="portfolio-overlay"><span class="portfolio-label">Golden Hour</span></div>
+    </div>
+    <div class="portfolio-item wide">
+      <img data-imgid="port-4" data-label="Portfolio 4 – Cinematic Portrait" src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1200&q=80&fit=crop" alt="Cinematic Portrait" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform .6s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+      <div class="portfolio-overlay"><span class="portfolio-label">Cinematic Portrait</span></div>
+    </div>
+    <div class="portfolio-item">
+      <img data-imgid="port-5" data-label="Portfolio 5 – High Fashion" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=700&q=80&fit=crop" alt="High Fashion" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+      <div class="portfolio-overlay"><span class="portfolio-label">High Fashion</span></div>
+    </div>
+    <div class="portfolio-item">
+      <img data-imgid="port-6" data-label="Portfolio 6 – Studio Glam" src="https://images.unsplash.com/photo-1488161628813-04466f872be2?w=700&q=80&fit=crop" alt="Studio Glam" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+      <div class="portfolio-overlay"><span class="portfolio-label">Studio Glam</span></div>
+    </div>
+    <div class="portfolio-item">
+      <img data-imgid="port-7" data-label="Portfolio 7 – Portfolio Shot" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&q=80&fit=crop" alt="Portfolio Shot" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+      <div class="portfolio-overlay"><span class="portfolio-label">Portfolio Shot</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY US / PROCESS ── -->
+<section id="process">
+  <div class="why-section">
+    <div class="why-left">
+      <p class="section-tag" style="text-align:left;">✦ How It Works ✦</p>
+      <h2 class="section-title" style="text-align:left;">Your <span class="gold-text">Journey</span><br>Starts Here</h2>
+      <p class="section-sub" style="text-align:left; margin-left:0;">We've built a simple, stress-free process designed for first-timers. No experience needed — just show up and shine.</p>
+
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-num gold-text">01</div>
+          <div class="step-content">
+            <h4>Consultation</h4>
+            <p>Chat with us on WhatsApp. We discuss your goals, style preferences, and build the perfect shoot plan.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-num gold-text">02</div>
+          <div class="step-content">
+            <h4>Styling & Prep</h4>
+            <p>We guide you on wardrobe, grooming, and posing basics so you feel completely ready and confident.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-num gold-text">03</div>
+          <div class="step-content">
+            <h4>The Shoot</h4>
+            <p>Professional studio session with expert direction. We capture your best angles in cinematic style.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-num gold-text">04</div>
+          <div class="step-content">
+            <h4>Delivery</h4>
+            <p>Premium edited photos delivered digitally. Ready to submit to agencies, brands, and casting calls.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="why-right">
+      <div class="why-card">
+        <div class="why-icon">🎓</div>
+        <h4>Newbie Friendly</h4>
+        <p>Zero experience required. We coach you through everything from day one.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💎</div>
+        <h4>Premium Quality</h4>
+        <p>Studio-grade equipment and editorial-level retouching in every package.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">⚡</div>
+        <h4>Fast Delivery</h4>
+        <p>Edited images delivered within 48-72 hours of your session.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🤝</div>
+        <h4>Career Guidance</h4>
+        <p>We help you understand the industry and how to leverage your portfolio.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📍</div>
+        <h4>Multiple Looks</h4>
+        <p>Studio & outdoor locations to maximize the variety in your portfolio.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🏆</div>
+        <h4>Proven Results</h4>
+        <p>500+ models launched their careers with HMD Studios portfolios.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MEET OUR MODELS ── -->
+<section style="padding: 100px 60px; background: var(--black);">
+  <p class="section-tag">✦ Success Stories ✦</p>
+  <h2 class="section-title" style="margin-bottom: 16px;">Models We've <span class="gold-text">Launched</span></h2>
+  <p class="section-sub">Aspiring models just like you — who came to HMD Studios and walked out with a career.</p>
+
+  <div style="display:grid; grid-template-columns: repeat(4,1fr); gap:3px; max-width:1300px; margin: 0 auto;">
+
+    <!-- Model 1 -->
+    <div style="position:relative; overflow:hidden; cursor:pointer; group;">
+      <img data-imgid="model-1" data-label="Model: Aisha K." src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=500&q=80&fit=crop" alt="Model Aisha" 
+           style="width:100%; aspect-ratio:2/3; object-fit:cover; display:block; transition:transform .5s; filter:brightness(.88);"
+           onmouseover="this.style.transform='scale(1.06)';this.style.filter='brightness(1)'"
+           onmouseout="this.style.transform='scale(1)';this.style.filter='brightness(.88)'" />
+      <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.8) 0%, transparent 55%); pointer-events:none;"></div>
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:20px;">
+        <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;">Aisha K.</div>
+        <div style="font-size:.68rem;letter-spacing:2px;color:var(--gold);text-transform:uppercase;">Editorial · Fashion</div>
+      </div>
+    </div>
+
+    <!-- Model 2 -->
+    <div style="position:relative; overflow:hidden; cursor:pointer;">
+      <img data-imgid="model-2" data-label="Model: Raza M." src="https://images.unsplash.com/photo-1504257432389-52343af06ae3?w=500&q=80&fit=crop" alt="Model Raza" 
+           style="width:100%; aspect-ratio:2/3; object-fit:cover; display:block; transition:transform .5s; filter:brightness(.88);"
+           onmouseover="this.style.transform='scale(1.06)';this.style.filter='brightness(1)'"
+           onmouseout="this.style.transform='scale(1)';this.style.filter='brightness(.88)'" />
+      <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.8) 0%, transparent 55%); pointer-events:none;"></div>
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:20px;">
+        <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;">Raza M.</div>
+        <div style="font-size:.68rem;letter-spacing:2px;color:var(--gold);text-transform:uppercase;">Commercial · Men's</div>
+      </div>
+    </div>
+
+    <!-- Model 3 -->
+    <div style="position:relative; overflow:hidden; cursor:pointer;">
+      <img data-imgid="model-3" data-label="Model: Sara N." src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=500&q=80&fit=crop" alt="Model Sara" 
+           style="width:100%; aspect-ratio:2/3; object-fit:cover; display:block; transition:transform .5s; filter:brightness(.88);"
+           onmouseover="this.style.transform='scale(1.06)';this.style.filter='brightness(1)'"
+           onmouseout="this.style.transform='scale(1)';this.style.filter='brightness(.88)'" />
+      <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.8) 0%, transparent 55%); pointer-events:none;"></div>
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:20px;">
+        <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;">Sara N.</div>
+        <div style="font-size:.68rem;letter-spacing:2px;color:var(--gold);text-transform:uppercase;">Glamour · Bridal</div>
+      </div>
+    </div>
+
+    <!-- Model 4 -->
+    <div style="position:relative; overflow:hidden; cursor:pointer;">
+      <img data-imgid="model-4" data-label="Model: Bilal S." src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&q=80&fit=crop" alt="Model Bilal" 
+           style="width:100%; aspect-ratio:2/3; object-fit:cover; display:block; transition:transform .5s; filter:brightness(.88);"
+           onmouseover="this.style.transform='scale(1.06)';this.style.filter='brightness(1)'"
+           onmouseout="this.style.transform='scale(1)';this.style.filter='brightness(.88)'" />
+      <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.8) 0%, transparent 55%); pointer-events:none;"></div>
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:20px;">
+        <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;">Bilal S.</div>
+        <div style="font-size:.68rem;letter-spacing:2px;color:var(--gold);text-transform:uppercase;">Lifestyle · Brand</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- second row -->
+  <div style="display:grid; grid-template-columns: repeat(3,1fr); gap:3px; max-width:1300px; margin:3px auto 0;">
+    <div style="position:relative; overflow:hidden; cursor:pointer;">
+      <img data-imgid="model-5" data-label="Model: Zara A." src="https://images.unsplash.com/photo-1514626585111-9aa86183ac98?w=700&q=80&fit=crop" alt="Model Zara" 
+           style="width:100%; aspect-ratio:16/9; object-fit:cover; object-position:center top; display:block; transition:transform .5s; filter:brightness(.85);"
+           onmouseover="this.style.transform='scale(1.05)';this.style.filter='brightness(1)'"
+           onmouseout="this.style.transform='scale(1)';this.style.filter='brightness(.85)'" />
+      <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.75) 0%, transparent 55%); pointer-events:none;"></div>
+      <div style="position:absolute;bottom:0;padding:20px;">
+        <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;">Zara A.</div>
+        <div style="font-size:.68rem;letter-spacing:2px;color:var(--gold);text-transform:uppercase;">High Fashion · Editorial</div>
+      </div>
+    </div>
+    <div style="position:relative; overflow:hidden; cursor:pointer;">
+      <img data-imgid="model-6" data-label="Model: Hassan M." src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=700&q=80&fit=crop" alt="Model Hassan" 
+           style="width:100%; aspect-ratio:16/9; object-fit:cover; object-position:center top; display:block; transition:transform .5s; filter:brightness(.85);"
+           onmouseover="this.style.transform='scale(1.05)';this.style.filter='brightness(1)'"
+           onmouseout="this.style.transform='scale(1)';this.style.filter='brightness(.85)'" />
+      <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.75) 0%, transparent 55%); pointer-events:none;"></div>
+      <div style="position:absolute;bottom:0;padding:20px;">
+        <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;">Hassan M.</div>
+        <div style="font-size:.68rem;letter-spacing:2px;color:var(--gold);text-transform:uppercase;">Commercial · Men's</div>
+      </div>
+    </div>
+    <div style="position:relative; overflow:hidden; cursor:pointer;">
+      <img data-imgid="model-7" data-label="Model: Maha R." src="https://images.unsplash.com/photo-1496440737103-cd596325d314?w=700&q=80&fit=crop" alt="Model Maha" 
+           style="width:100%; aspect-ratio:16/9; object-fit:cover; object-position:center top; display:block; transition:transform .5s; filter:brightness(.85);"
+           onmouseover="this.style.transform='scale(1.05)';this.style.filter='brightness(1)'"
+           onmouseout="this.style.transform='scale(1)';this.style.filter='brightness(.85)'" />
+      <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.75) 0%, transparent 55%); pointer-events:none;"></div>
+      <div style="position:absolute;bottom:0;padding:20px;">
+        <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;">Maha R.</div>
+        <div style="font-size:.68rem;letter-spacing:2px;color:var(--gold);text-transform:uppercase;">Glamour · Studio</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:48px;">
+    <a data-social="wa" href="https://wa.me/923144002597?text=I%20want%20to%20start%20my%20modeling%20career%20with%20HMD%20Studios!" target="_blank" class="btn-primary">
+      ✨ &nbsp; Start Your Portfolio Today
+    </a>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<div class="testimonials-section">
+  <p class="section-tag">✦ Reviews ✦</p>
+  <h2 class="section-title" style="margin-bottom: 60px;">What <span class="gold-text">They Say</span></h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="quote-mark">"</div>
+      <p class="testimonial-text">HMD Studios made me feel so comfortable! I had zero experience and they guided me through every pose. My portfolio got me signed within 2 weeks.</p>
+      <div class="testimonial-author">
+        <img data-imgid="model-1" data-label="Model: Aisha K." data-imgid="test-avatar-1" data-label="Review Avatar: Amna Farooq" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&q=80&fit=crop&crop=face" alt="Amna" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);" />
+        <div>
+          <div class="author-name">Amna Farooq</div>
+          <div class="author-role">Aspiring Model, Lahore</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="quote-mark">"</div>
+      <p class="testimonial-text">The quality of my photos is absolutely stunning. Cinematic, professional, and delivered fast. Best investment I made for my modeling career.</p>
+      <div class="testimonial-author">
+        <img data-imgid="model-3" data-label="Model: Sara N." data-imgid="test-avatar-2" data-label="Review Avatar: Zara Ahmed" src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=100&q=80&fit=crop&crop=face" alt="Zara" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);" />
+        <div>
+          <div class="author-name">Zara Ahmed</div>
+          <div class="author-role">Fashion Model</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="quote-mark">"</div>
+      <p class="testimonial-text">I was nervous before my shoot but the team at HMD made it so fun and professional. My agency loved the portfolio. Highly recommended!</p>
+      <div class="testimonial-author">
+        <img data-imgid="model-4" data-label="Model: Bilal S." data-imgid="test-avatar-3" data-label="Review Avatar: Hassan Malik" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&q=80&fit=crop&crop=face" alt="Hassan" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);" />
+        <div>
+          <div class="author-name">Hassan Malik</div>
+          <div class="author-role">Commercial Model</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PACKAGES ── -->
+<section id="packages" class="section" style="padding-top: 100px; max-width: 100%;">
+  <p class="section-tag">✦ Pricing ✦</p>
+  <h2 class="section-title">Portfolio <span class="gold-text">Packages</span></h2>
+  <p class="section-sub">Choose the package that fits your goals. All include expert direction, studio setup, and retouched digital files.</p>
+
+  <div class="packages-grid">
+    <div class="package-card">
+      <div class="pkg-name">Starter</div>
+      <div class="pkg-price gold-text">Starter</div>
+      <div class="pkg-sub">Perfect for your first shoot</div>
+      <ul class="pkg-features">
+        <li>1-hour studio session</li>
+        <li>2 outfit changes</li>
+        <li>10 edited photos</li>
+        <li>Basic retouching</li>
+        <li>Digital delivery</li>
+      </ul>
+      <a data-social="wa" href="https://wa.me/923144002597?text=Hi!%20I%20want%20the%20Starter%20package." target="_blank" class="btn-outline" style="width: 100%; justify-content: center;">Enquire on WhatsApp</a>
+    </div>
+
+    <div class="package-card featured">
+      <div class="featured-badge">Most Popular</div>
+      <div class="pkg-name">Professional</div>
+      <div class="pkg-price gold-text">Pro</div>
+      <div class="pkg-sub">Ideal for agency submissions</div>
+      <ul class="pkg-features">
+        <li>3-hour shoot (studio + outdoor)</li>
+        <li>4 outfit changes</li>
+        <li>25 edited photos</li>
+        <li>Premium retouching</li>
+        <li>Career consultation</li>
+        <li>Digital + print-ready files</li>
+      </ul>
+      <a data-social="wa" href="https://wa.me/923144002597?text=Hi!%20I%20want%20the%20Professional%20package." target="_blank" class="btn-primary" style="width: 100%; justify-content: center;">Book Now</a>
+    </div>
+
+    <div class="package-card">
+      <div class="pkg-name">Elite</div>
+      <div class="pkg-price gold-text">Elite</div>
+      <div class="pkg-sub">Full career launch package</div>
+      <ul class="pkg-features">
+        <li>Full-day shoot (6 hours)</li>
+        <li>Unlimited outfit changes</li>
+        <li>50+ edited photos</li>
+        <li>Cinematic video reel</li>
+        <li>Social media kit</li>
+        <li>Agency intro support</li>
+        <li>Priority delivery</li>
+      </ul>
+      <a data-social="wa" href="https://wa.me/923144002597?text=Hi!%20I%20want%20the%20Elite%20package." target="_blank" class="btn-outline" style="width: 100%; justify-content: center;">Enquire on WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BANNER ── -->
+<section id="contact" class="cta-banner">
+  <h2>Ready to <span class="gold-text">Start Your</span> Modeling Journey?</h2>
+  <p>Message us on WhatsApp and book your session today. New videos every week on our socials @HMD.studios</p>
+  <div class="cta-banner-btns">
+    <a data-social="wa" href="https://wa.me/923144002597?text=Hi%20HMD%20Studios!%20I%20want%20to%20book%20a%20portfolio%20session." target="_blank" class="btn-primary">
+      💬 &nbsp; WhatsApp Us Now
+    </a>
+    <a data-social="ig" href="https://www.instagram.com/HMD.studios" target="_blank" class="btn-outline">
+      📸 &nbsp; Follow on Instagram
+    </a>
+  </div>
+  <!-- Social Media Row -->
+  <div style="display:flex; gap:14px; justify-content:center; margin-top:32px; flex-wrap:wrap; position:relative; z-index:1;">
+    <a data-social="fb" href="https://www.facebook.com/HMD.studios" target="_blank" class="cta-social-btn cta-fb">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M24 12.073C24 5.404 18.627 0 12 0S0 5.404 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+      Facebook
+    </a>
+    <a data-social="tt" href="https://www.tiktok.com/@HMD.studios" target="_blank" class="cta-social-btn cta-tt">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.67a8.18 8.18 0 004.78 1.52V6.7a4.85 4.85 0 01-1.01-.01z"/></svg>
+      TikTok
+    </a>
+    <a data-social="yt" href="https://www.youtube.com/@HMD.studios" target="_blank" class="cta-social-btn cta-yt">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      YouTube
+    </a>
+    <a data-social="ig" href="https://www.instagram.com/HMD.studios" target="_blank" class="cta-social-btn cta-ig">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      Instagram
+    </a>
+  </div>
+  <p style="margin-top: 24px; font-size: .82rem; color: var(--gold); position:relative;z-index:1;">📞 +92 314 4002597</p>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="nav-logo gold-text">HMD Studios</span>
+      <p>Turning moments into masterpieces. We build cinematic portfolios for aspiring models — helping you step into your career with confidence and style.</p>
+      <p style="margin-top: 12px; font-size: .8rem; color: var(--gold);">@HMD.studios</p>
+      <div class="footer-socials">
+        <!-- Facebook -->
+        <a data-social="fb" href="https://www.facebook.com/HMD.studios" target="_blank" class="social-btn social-fb" title="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M24 12.073C24 5.404 18.627 0 12 0S0 5.404 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+        </a>
+        <!-- TikTok -->
+        <a data-social="tt" href="https://www.tiktok.com/@HMD.studios" target="_blank" class="social-btn social-tt" title="TikTok">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.67a8.18 8.18 0 004.78 1.52V6.7a4.85 4.85 0 01-1.01-.01z"/></svg>
+        </a>
+        <!-- YouTube -->
+        <a data-social="yt" href="https://www.youtube.com/@HMD.studios" target="_blank" class="social-btn social-yt" title="YouTube">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+        <!-- Instagram -->
+        <a data-social="ig" href="https://www.instagram.com/HMD.studios" target="_blank" class="social-btn social-ig" title="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#services">Portfolio Shoots</a></li>
+        <li><a href="#services">Photo Editing</a></li>
+        <li><a href="#services">Model Guidance</a></li>
+        <li><a href="#services">Video Reels</a></li>
+        <li><a href="#services">Creative Content</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Quick Links</h5>
+      <ul>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#process">How It Works</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a data-social="wa" href="https://wa.me/923144002597" target="_blank">WhatsApp: +92 314 4002597</a></li>
+        <li><a href="https://hmdstudios.online">hmdstudios.online</a></li>
+        <li><a href="#contact">Lahore, Pakistan</a></li>
+        <li><a href="mailto:info@hmdstudios.online">info@hmdstudios.online</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2025 HMD Studios. All rights reserved.</span>
+    <span>Turning Moments Into Masterpieces ✦</span>
+  </div>
+</footer>
+
+<!-- ── WHATSAPP FLOAT ── -->
+<div class="whatsapp-float">
+  <div class="wa-tooltip">Chat with us on WhatsApp!</div>
+  <a data-social="wa" href="https://wa.me/923144002597?text=Hi%20HMD%20Studios!%20I%27m%20interested%20in%20a%20portfolio%20shoot." target="_blank" data-social="wa" class="wa-btn" title="WhatsApp HMD Studios">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+  </a>
+</div>
+
+<!-- ── ADMIN PANEL ── -->
+<!-- Hidden gear icon - only YOU know this is here -->
+<button id="adminToggle" onclick="toggleAdmin()" title="Site Settings" style="
+  position:fixed; bottom:32px; left:32px; z-index:9999;
+  width:44px; height:44px; border-radius:50%;
+  background:rgba(20,20,20,0.7); border:1px solid rgba(201,168,76,0.25);
+  color:rgba(201,168,76,0.4); font-size:1.1rem; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:all .3s; backdrop-filter:blur(8px);
+" onmouseover="this.style.borderColor='rgba(201,168,76,0.8)';this.style.color='rgba(201,168,76,1)'"
+   onmouseout="this.style.borderColor='rgba(201,168,76,0.25)';this.style.color='rgba(201,168,76,0.4)'">⚙</button>
+
+<!-- Admin Panel Overlay -->
+<div id="adminOverlay" style="
+  display:none; position:fixed; inset:0; z-index:10000;
+  background:rgba(0,0,0,0.85); backdrop-filter:blur(10px);
+  overflow-y:auto;
+">
+  <div style="
+    max-width:720px; margin:40px auto; padding:20px;
+    background:#111; border:1px solid rgba(201,168,76,0.35);
+    border-radius:4px; position:relative;
+  ">
+    <!-- Header -->
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;padding-bottom:20px;border-bottom:1px solid rgba(201,168,76,.2);">
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;background:linear-gradient(135deg,#C9A84C,#F0D080);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">HMD Studios</div>
+        <div style="font-size:.7rem;letter-spacing:3px;color:#666;text-transform:uppercase;margin-top:2px;">Site Settings Panel</div>
+      </div>
+      <button onclick="toggleAdmin()" style="background:none;border:1px solid rgba(255,255,255,.15);color:#888;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all .2s;"
+        onmouseover="this.style.borderColor='#c00';this.style.color='#f44'"
+        onmouseout="this.style.borderColor='rgba(255,255,255,.15)';this.style.color='#888'">✕</button>
+    </div>
+
+    <!-- ── SOCIAL MEDIA LINKS ── -->
+    <div style="margin-bottom:36px;">
+      <div style="font-size:.65rem;letter-spacing:4px;text-transform:uppercase;color:#C9A84C;margin-bottom:18px;display:flex;align-items:center;gap:10px;">
+        <span>Social Media Links</span>
+        <div style="flex:1;height:1px;background:rgba(201,168,76,.2);"></div>
+      </div>
+      <div style="display:grid;gap:12px;">
+
+        <!-- Facebook -->
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:38px;height:38px;background:#1877F2;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M24 12.073C24 5.404 18.627 0 12 0S0 5.404 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:.7rem;color:#888;margin-bottom:4px;letter-spacing:1px;">FACEBOOK PAGE URL</div>
+            <input id="inp_fb" type="url" placeholder="https://www.facebook.com/YourPage" style="width:100%;background:#1a1a1a;border:1px solid rgba(201,168,76,.2);color:#f5f0e8;padding:10px 14px;font-size:.82rem;font-family:'Montserrat',sans-serif;border-radius:3px;outline:none;" onfocus="this.style.borderColor='rgba(201,168,76,.6)'" onblur="this.style.borderColor='rgba(201,168,76,.2)'">
+          </div>
+        </div>
+
+        <!-- TikTok -->
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:38px;height:38px;background:#010101;border:1px solid #333;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.67a8.18 8.18 0 004.78 1.52V6.7a4.85 4.85 0 01-1.01-.01z"/></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:.7rem;color:#888;margin-bottom:4px;letter-spacing:1px;">TIKTOK PROFILE URL</div>
+            <input id="inp_tt" type="url" placeholder="https://www.tiktok.com/@YourUsername" style="width:100%;background:#1a1a1a;border:1px solid rgba(201,168,76,.2);color:#f5f0e8;padding:10px 14px;font-size:.82rem;font-family:'Montserrat',sans-serif;border-radius:3px;outline:none;" onfocus="this.style.borderColor='rgba(201,168,76,.6)'" onblur="this.style.borderColor='rgba(201,168,76,.2)'">
+          </div>
+        </div>
+
+        <!-- YouTube -->
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:38px;height:38px;background:#FF0000;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:.7rem;color:#888;margin-bottom:4px;letter-spacing:1px;">YOUTUBE CHANNEL URL</div>
+            <input id="inp_yt" type="url" placeholder="https://www.youtube.com/@YourChannel" style="width:100%;background:#1a1a1a;border:1px solid rgba(201,168,76,.2);color:#f5f0e8;padding:10px 14px;font-size:.82rem;font-family:'Montserrat',sans-serif;border-radius:3px;outline:none;" onfocus="this.style.borderColor='rgba(201,168,76,.6)'" onblur="this.style.borderColor='rgba(201,168,76,.2)'">
+          </div>
+        </div>
+
+        <!-- Instagram -->
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:38px;height:38px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:.7rem;color:#888;margin-bottom:4px;letter-spacing:1px;">INSTAGRAM PROFILE URL</div>
+            <input id="inp_ig" type="url" placeholder="https://www.instagram.com/YourHandle" style="width:100%;background:#1a1a1a;border:1px solid rgba(201,168,76,.2);color:#f5f0e8;padding:10px 14px;font-size:.82rem;font-family:'Montserrat',sans-serif;border-radius:3px;outline:none;" onfocus="this.style.borderColor='rgba(201,168,76,.6)'" onblur="this.style.borderColor='rgba(201,168,76,.2)'">
+          </div>
+        </div>
+
+        <!-- WhatsApp -->
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:38px;height:38px;background:#25D366;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:.7rem;color:#888;margin-bottom:4px;letter-spacing:1px;">WHATSAPP NUMBER (with country code)</div>
+            <input id="inp_wa" type="text" placeholder="923144002597" style="width:100%;background:#1a1a1a;border:1px solid rgba(201,168,76,.2);color:#f5f0e8;padding:10px 14px;font-size:.82rem;font-family:'Montserrat',sans-serif;border-radius:3px;outline:none;" onfocus="this.style.borderColor='rgba(201,168,76,.6)'" onblur="this.style.borderColor='rgba(201,168,76,.2)'">
+          </div>
+        </div>
+      </div>
+
+      <button onclick="applySocials()" style="
+        margin-top:16px; width:100%;
+        background:linear-gradient(135deg,#8B6914,#C9A84C,#F0D080);
+        color:#0a0a0a; border:none; padding:13px;
+        font-family:'Montserrat',sans-serif; font-size:.75rem;
+        font-weight:700; letter-spacing:2px; text-transform:uppercase;
+        cursor:pointer; border-radius:3px; transition:opacity .2s;
+      " onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+        ✓ &nbsp; Apply Social Media Links
+      </button>
+    </div>
+
+    <!-- ── CHANGE IMAGES ── -->
+    <div style="margin-bottom:36px;">
+      <div style="font-size:.65rem;letter-spacing:4px;text-transform:uppercase;color:#C9A84C;margin-bottom:18px;display:flex;align-items:center;gap:10px;">
+        <span>Change Website Images</span>
+        <div style="flex:1;height:1px;background:rgba(201,168,76,.2);"></div>
+      </div>
+      <div style="background:rgba(201,168,76,.05);border:1px dashed rgba(201,168,76,.2);padding:14px 16px;border-radius:3px;margin-bottom:16px;">
+        <p style="font-size:.75rem;color:#888;line-height:1.7;">Paste any image URL below and click Apply. You can use images from Unsplash, Pexels, or upload your photo to <strong style="color:#aaa;">imgbb.com</strong> and paste the link.</p>
+      </div>
+      <div style="display:grid;gap:14px;" id="imgEditorGrid"></div>
+      <button onclick="applyImages()" style="
+        margin-top:16px; width:100%;
+        background:linear-gradient(135deg,#8B6914,#C9A84C,#F0D080);
+        color:#0a0a0a; border:none; padding:13px;
+        font-family:'Montserrat',sans-serif; font-size:.75rem;
+        font-weight:700; letter-spacing:2px; text-transform:uppercase;
+        cursor:pointer; border-radius:3px; transition:opacity .2s;
+      " onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+        ✓ &nbsp; Apply All Images
+      </button>
+    </div>
+
+    <!-- ── SAVE TO FILE NOTE ── -->
+    <div style="background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);padding:16px 20px;border-radius:3px;">
+      <div style="font-size:.72rem;font-weight:700;color:#C9A84C;letter-spacing:1px;margin-bottom:6px;">💾 CHANGES SAVE FOR THIS SESSION ONLY</div>
+      <p style="font-size:.75rem;color:#888;line-height:1.7;">Changes apply instantly on screen but reset when you refresh. To save permanently: after applying changes, press <strong style="color:#aaa;">Ctrl+S (or Cmd+S on Mac)</strong> in your browser to save the page, then re-upload that saved file to GitHub.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── ADMIN PANEL TOGGLE ──
+  function toggleAdmin() {
+    const panel = document.getElementById('adminOverlay');
+    const isOpen = panel.style.display !== 'none';
+    panel.style.display = isOpen ? 'none' : 'block';
+    if (!isOpen) loadCurrentValues();
+  }
+
+  // Collect all images on the page into the editor
+  function loadCurrentValues() {
+    // Load social links
+    const links = {
+      fb: document.querySelector('a[data-social="fb"]'),
+      tt: document.querySelector('a[data-social="tt"]'),
+      yt: document.querySelector('a[data-social="yt"]'),
+      ig: document.querySelector('a[data-social="ig"]'),
+    };
+    if (links.fb) document.getElementById('inp_fb').value = links.fb.href || '';
+    if (links.tt) document.getElementById('inp_tt').value = links.tt.href || '';
+    if (links.yt) document.getElementById('inp_yt').value = links.yt.href || '';
+    if (links.ig) document.getElementById('inp_ig').value = links.ig.href || '';
+    const waLink = document.querySelector('a[data-social="wa"]');
+    if (waLink) {
+      const num = (waLink.href.match(/wa\.me\/(\d+)/) || [])[1] || '';
+      document.getElementById('inp_wa').value = num;
+    }
+
+    // Build image editor
+    const grid = document.getElementById('imgEditorGrid');
+    grid.innerHTML = '';
+    const imgs = document.querySelectorAll('img[data-imgid]');
+    imgs.forEach(img => {
+      const id = img.getAttribute('data-imgid');
+      const label = img.getAttribute('data-label') || id;
+      grid.innerHTML += `
+        <div style="display:grid;grid-template-columns:80px 1fr;gap:12px;align-items:center;">
+          <div style="position:relative;width:80px;height:60px;overflow:hidden;border-radius:3px;border:1px solid rgba(201,168,76,.2);">
+            <img src="${img.src}" style="width:100%;height:100%;object-fit:cover;" id="preview_${id}">
+          </div>
+          <div>
+            <div style="font-size:.68rem;color:#888;margin-bottom:5px;letter-spacing:1px;">${label.toUpperCase()}</div>
+            <input type="url" id="imginp_${id}" value="${img.src}"
+              placeholder="Paste image URL here..."
+              style="width:100%;background:#1a1a1a;border:1px solid rgba(201,168,76,.2);color:#f5f0e8;padding:9px 12px;font-size:.78rem;font-family:'Montserrat',sans-serif;border-radius:3px;outline:none;"
+              onfocus="this.style.borderColor='rgba(201,168,76,.6)'" onblur="this.style.borderColor='rgba(201,168,76,.2)'"
+              oninput="document.getElementById('preview_${id}').src=this.value">
+          </div>
+        </div>`;
+    });
+  }
+
+  // Apply social links to all matching anchors
+  function applySocials() {
+    const vals = {
+      fb: document.getElementById('inp_fb').value.trim(),
+      tt: document.getElementById('inp_tt').value.trim(),
+      yt: document.getElementById('inp_yt').value.trim(),
+      ig: document.getElementById('inp_ig').value.trim(),
+      wa: document.getElementById('inp_wa').value.trim(),
+    };
+    document.querySelectorAll('a[data-social="fb"]').forEach(a => { if(vals.fb) a.href = vals.fb; });
+    document.querySelectorAll('a[data-social="tt"]').forEach(a => { if(vals.tt) a.href = vals.tt; });
+    document.querySelectorAll('a[data-social="yt"]').forEach(a => { if(vals.yt) a.href = vals.yt; });
+    document.querySelectorAll('a[data-social="ig"]').forEach(a => { if(vals.ig) a.href = vals.ig; });
+    if (vals.wa) {
+      const msg = encodeURIComponent('Hi HMD Studios! I want to book a portfolio shoot.');
+      document.querySelectorAll('a[data-social="wa"]').forEach(a => {
+        a.href = `https://wa.me/${vals.wa}?text=${msg}`;
+      });
+    }
+    showToast('✓ Social links updated!');
+  }
+
+  // Apply images
+  function applyImages() {
+    document.querySelectorAll('img[data-imgid]').forEach(img => {
+      const id = img.getAttribute('data-imgid');
+      const inp = document.getElementById('imginp_' + id);
+      if (inp && inp.value.trim()) img.src = inp.value.trim();
+    });
+    showToast('✓ Images updated!');
+  }
+
+  // Toast notification
+  function showToast(msg) {
+    let t = document.getElementById('adminToast');
+    if (!t) {
+      t = document.createElement('div');
+      t.id = 'adminToast';
+      t.style.cssText = 'position:fixed;bottom:90px;left:32px;z-index:99999;background:linear-gradient(135deg,#8B6914,#C9A84C);color:#000;padding:12px 20px;font-size:.78rem;font-weight:700;letter-spacing:1px;border-radius:3px;opacity:0;transition:opacity .3s;font-family:Montserrat,sans-serif;';
+      document.body.appendChild(t);
+    }
+    t.textContent = msg;
+    t.style.opacity = '1';
+    setTimeout(() => t.style.opacity = '0', 2500);
+  }
+
+  // Close panel on overlay click
+  document.getElementById('adminOverlay').addEventListener('click', function(e) {
+    if (e.target === this) toggleAdmin();
+  });
+</script>
+
+<script>
+  // Sticky nav on scroll
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+
+  // Animate on scroll (simple fade-in)
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.service-card, .portfolio-item, .why-card, .testimonial-card, .package-card, .process-step').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
